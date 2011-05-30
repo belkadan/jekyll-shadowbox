@@ -18,8 +18,10 @@ module ExtendedFilters
   def preview(text, delimiter = '<!--more-->')
     if text.index(delimiter) != nil
       text.split(delimiter).first
-    else
+    elsif String.method_defined?(:truncate_html)
       text.truncate_html(100)
+    else
+      text # nothing we can do!
     end
   end
   
