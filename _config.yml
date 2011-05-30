@@ -1,0 +1,43 @@
+#####################
+#
+# ### SHADOWBOX ###
+#
+# This is a theme for the Jekyll site generator.
+# It is designed so that new users should have to edit as few files as possible.
+#
+# - _config.yml
+# - images/blog-banner.png (height: 80px)
+# - _includes/head.html
+# - _includes/header.md
+# - _includes/footer.md
+# - index.html
+#
+# Shadowbox was (very) loosely based on the Kubrick theme for Wordpress.
+# A number of the plugins were created by Jose Diaz-Gonzalez.
+#
+# Created by Jordy Rose
+# http://belkadan.com
+# jrose@belkadan.com
+#
+#####################
+
+
+# Jekyll settings
+pygments: true
+markdown: kramdown
+permalink: /:categories/:year/:month/:title
+destination: ~/Sites/belkadan/blog
+
+# Required site details
+title: -dealloc
+base-url: http://counterpoint.local/~jordy/belkadan/blog
+
+# "Optional" site details
+subtitle: The Belkadan Software Blog
+permid: tag:belkadan.com,2007:dealloc
+author: Jordy Rose
+favicon: /~jordy/belkadan/favicon
+disqus: dealloc
+
+# For services like Disqus that use a ping for validations
+offline: false

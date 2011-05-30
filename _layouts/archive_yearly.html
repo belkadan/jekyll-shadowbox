@@ -1,0 +1,25 @@
+---
+layout: with_sidebar
+body: page
+---
+<div class="shadow-box">
+	<h2>{{ page.year }}</h2>
+
+	{% for m in (1..12) reversed %}
+		{% if page.collated_posts[page.year][m] %}
+			<h3>{{ m | month_to_name }}</h3>
+			<ol class="dates">
+			{% for d in (1..31) reversed %}
+				{% if page.collated_posts[page.year][m][d] %}
+					{% for p in page.collated_posts[page.year][m][d] reversed %}
+						<li>
+							<strong>{{ p.date | date: "%d" }}</strong>
+							<a href="{{ site.base-url }}{{ p.url }}">{{ p.title }}</a>
+						</li>
+					{% endfor %}
+				{% endif %}
+			{% endfor %}
+			</ol>
+		{% endif %}
+	{% endfor %}
+</div>

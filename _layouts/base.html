@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html>
+<head>	
+	<title>
+		{% if page.full-title %}
+			{{ page.full-title }}
+		{% else %}
+			{{ page.title }} || {{ site.title }}
+		{% endif %}
+	</title>
+	{% include head.html %}
+	<link rel="shortcut icon" href="{{ site.favicon }}" />
+	<link rel="stylesheet" href="{{ site.base-url }}/css/style.css" media="screen" type="text/css"/>
+	<link rel="stylesheet" href="{{ site.base-url }}/css/syntax.css" type="text/css"/>
+	{% if page.atom %}
+		<link rel="alternate" type="application/atom+xml" title="Atom" href="{{ site.base-url}}{{ page.url | replace: 'index.html', 'atom' }}" />
+	{% endif %}
+</head>
+<body class="{{ page.body }}">
+<div id="top">
+
+	{% include header.md %}
+
+	<div id="page">
+		{{ content }}
+	</div>
+
+	{% if page.disqus %}
+		{% include disqus.js %}
+	{% endif %}
+
+	<div id="footer" class="shadow-box small-shadow">
+		{% include footer.md %}
+	</div>
+</div>
+</body>
+</html>

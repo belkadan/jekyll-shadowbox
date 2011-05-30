@@ -1,0 +1,43 @@
+---
+layout: base
+---
+<div id="content" class="narrowcolumn" role="main">
+	{{ content }}
+</div>
+<div id="sidebar" class="shadow-box small-shadow" role="complementary">
+	<ul>
+		<li>
+			<h2>Archives</h2>
+			<ul class="meta">
+				{% for month in site.months %}
+				<li>
+					<a href="{{ site.base-url }}/{{ site.current-year }}/{{ month.num | pad }}">{{ month.num | month_to_name }} {{ site.current-year }}</a>
+					<span class="metadata">({{ month.count }})</span>
+				</li>
+				{% endfor %}
+				{% for year in site.years %}
+				<li>
+					<a href="{{ site.base-url }}/{{ year.num }}">Posts from {{ year.num }}</a>
+					<span class="metadata">({{ year.count }})</span></li>
+				{% endfor %}
+			</ul>
+		</li>
+		<li>
+			<h2>Taxonomy</h2>
+			<ul class="meta">
+				{% for category in site.iterable.categories %}
+				<li>
+					<a href="{{ site.base-url }}/categories/{{ category.name | xml_id }}" class="category">{{ category.name | taxonomy_name }}</a>
+					<span class="metadata">{{ category.posts.size }}</span>
+				</li>
+				{% endfor %}
+				{% for tag in site.iterable.tags %}
+				<li>
+					<a href="{{ site.base-url }}/tags/{{ tag.name | xml_id }}" class="tag">{{ tag.name | taxonomy_name }}</a>
+					<span class="metadata">({{ tag.posts.size }})</span>
+				</li>
+				{% endfor %}
+			</ul>
+		</li>
+	</ul>
+</div>

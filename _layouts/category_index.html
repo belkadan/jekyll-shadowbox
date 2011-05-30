@@ -1,0 +1,12 @@
+---
+layout: list
+---
+
+{% if page.related.size > 0 %}
+	<h3>Possibly Related Tags</h3>
+	<ul class="meta">
+	{% for tag in page.related %}
+		<li><a href="{{ site.base-url }}/tags/{{tag | xml_id }}" class="tag">{{ tag | taxonomy_name }}</a></li>
+	{% endfor %}
+	</ul>
+{% endif %}
