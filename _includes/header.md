@@ -2,7 +2,7 @@
 
 <h1 id="banner">
 	<a href="{{ site.base-url }}">
-		<img src="{{ site.base-url }}/images/blog-banner.png" alt="{{ site.title }}" height="80"/>
+		<img src="{{ site.base-url }}/images/blog-banner" alt="{{ site.title }}" height="80"/>
 	</a>
 </h1>
 

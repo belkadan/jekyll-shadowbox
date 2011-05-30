@@ -21,7 +21,7 @@ module Jekyll
       end
     end
   rescue LoadError
-    # No ptools; oh well
+    # No ptools; oh well...we may get some funny Liquid errors.
     module Convertible
       def shadowbox_binary?
         false
