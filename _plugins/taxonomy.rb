@@ -24,6 +24,7 @@ module Taxonomy
   class Atom < Index
     def initialize(site, dir, groupname, group)
       super(site, dir, groupname, group, 'atom', 'atom.xml')
+      self.data['title'] = 'Latest posts in “' + groupname.taxonomy_name + '”'
     end
   end
 
@@ -34,10 +35,11 @@ module Taxonomy
       @dir = dir
       @name = 'index.html'
 
-      self.process(@groupname)
-      self.read_yaml(File.join(@base, '_layouts'), layout)
-      self.data['taxonomy'] = taxonomy
-      self.data['layout'] = layout
+      self.process(@name)
+      self.data = {
+        'taxonomy' => taxonomy,
+        'layout' => layout
+      }
     end
   end
 
@@ -48,7 +50,8 @@ module Taxonomy
       if site.layouts.key? 'tag_index'
         dir = site.config['tag_dir'] || '/tags'
         site.tags.each do |tag, posts|
-          site.pages << Index.new(site, dir, tag, posts, 'tag_index') << Atom.new(site, dir, tag, posts)
+          site.pages << Index.new(site, dir, tag, posts, 'tag_index')
+          site.pages << Atom.new(site, dir, tag, posts) if site.config['permid']
         end
       end
 
@@ -60,7 +63,8 @@ module Taxonomy
       if site.layouts.key? 'category_index'
         dir = site.config['category_dir'] || '/categories'
         site.categories.each do |category, posts|
-          site.pages << Index.new(site, dir, category, posts, 'category_index') << Atom.new(site, dir, category, posts)
+          site.pages << Index.new(site, dir, category, posts, 'category_index') 
+          site.pages << Atom.new(site, dir, category, posts) if site.config['permid']
         end
       end
 

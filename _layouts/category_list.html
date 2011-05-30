@@ -1,0 +1,21 @@
+---
+layout: with_sidebar
+title: Categories
+---
+
+<div class="shadow-box">
+	<h2>Categories</h2>
+
+	<ul class="meta">
+		{% for category in site.iterable.categories %}
+		<li>
+			<a href="{{ site.base-url }}/categories/{{ category.name | xml_id }}" class="category">{{ category.name | taxonomy_name }}</a>
+			<span class="metadata">{{ category.posts.size }}</span>
+		</li>
+		{% endfor %}
+	</ul>
+	
+	{% if site.iterable.tags.size > 0 %}
+		<p>See also <a href="{{ site.base-url }}/tags">the list of all tags</a>.</p>
+	{% endif %}
+</div>
