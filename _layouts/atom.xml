@@ -2,6 +2,7 @@
 # Force processing
 # The entries are first to get the proper value for the <updated> tag.
 ---
+{% if site.permid %}
 <?xml version="1.0"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 	{% if page.posts %}
@@ -50,23 +51,28 @@
 	{% else %}
 		<id>{{ site.permid }}{{ page.url | replace: '/atom.xml', '' }}</id>
 	{% endif %}
+
 	<updated>{{ newest | date_to_xmlschema }}</updated>
 	
 	{% if page.title %}
 		<title type="text">{{ page.title | xml_escape }} || {{ site.title | xml_escape }}</title>
 	{% else %}
 		<title type="text">{{ site.title | xml_escape }}</title>
-		<subtitle type="text">{{ site.subtitle | xml_escape }}</subtitle>
+		{% if site.subtitle %}
+			<subtitle type="text">{{ site.subtitle | xml_escape }}</subtitle>
+		{% endif %}
 	{% endif %}
 
 	<link rel="alternate" href="{{ site.base-url }}{{ page.url | replace:'/atom.xml','' }}" />
 	<link rel="self" href="{{ site.base-url }}{{ page.url | replace:'/atom.xml','/atom'}}" />
-	<link rel="shortcut icon" href="{{ site.favicon }}" />
-
+	
 	<generator>Jekyll/Shadowbox</generator>
-	<author>
-		<name>{{ site.author | xml_escape }}</name>
-	</author>
+	{% if site.author %}
+		<author>
+			<name>{{ site.author | xml_escape }}</name>
+		</author>
+	{% endif %}
 
 	{{ content }}
 </feed>
+{% endif %}

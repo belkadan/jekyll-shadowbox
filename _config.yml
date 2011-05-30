@@ -32,9 +32,11 @@ destination: ~/Sites/belkadan/blog
 title: -dealloc
 base-url: http://counterpoint.local/~jordy/belkadan/blog
 
+# Required for Atom feeds.
+permid: tag:belkadan.com,2007:dealloc
+
 # "Optional" site details
 subtitle: The Belkadan Software Blog
-permid: tag:belkadan.com,2007:dealloc
 author: Jordy Rose
 favicon: /~jordy/belkadan/favicon
 disqus: dealloc

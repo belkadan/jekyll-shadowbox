@@ -50,11 +50,13 @@ disqus: true
 	</div>
 	{% endif %}
 	
-	<div id="comments">
-		<!-- <div id="num-responses"><span class="responses-number">0</span> Responses. <a href="#comments">Add Yours!</a></div> -->
-		<div id="disqus_thread" name="#comments">
+	{% if site.disqus %}
+		<div id="comments">
+			<!-- <div id="num-responses"><span class="responses-number">0</span> Responses. <a href="#comments">Add Yours!</a></div> -->
+			<div id="disqus_thread" name="#comments">
+			</div>
+			<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+			<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
 		</div>
-		<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-		<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
-	</div>
+	{% endif %}
 </div>

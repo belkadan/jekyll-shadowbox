@@ -10,10 +10,15 @@
 		{% endif %}
 	</title>
 	{% include head.html %}
-	<link rel="shortcut icon" href="{{ site.favicon }}" />
+	
+	{% if site.favicon %}
+		<link rel="shortcut icon" href="{{ site.favicon }}" />
+	{% endif %}
+
 	<link rel="stylesheet" href="{{ site.base-url }}/css/style.css" media="screen" type="text/css"/>
 	<link rel="stylesheet" href="{{ site.base-url }}/css/syntax.css" type="text/css"/>
-	{% if page.atom %}
+
+	{% if page.atom and site.permid %}
 		<link rel="alternate" type="application/atom+xml" title="Atom" href="{{ site.base-url}}{{ page.url | replace: 'index.html', 'atom' }}" />
 	{% endif %}
 </head>
@@ -26,7 +31,7 @@
 		{{ content }}
 	</div>
 
-	{% if page.disqus %}
+	{% if page.disqus and site.disqus %}
 		{% include disqus.js %}
 	{% endif %}
 
