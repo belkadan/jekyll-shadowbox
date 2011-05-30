@@ -14,12 +14,12 @@ module Jekyll
       self.read_yaml(File.join(base, '_layouts'), type + '.html')
       self.data['collated_posts'] = self.collate(site)
 
-      year, month, day = dir.split('/')
+      _, year, month, day = dir.split('/')
       self.data['year'] = year.to_i
       month and self.data['month'] = month.to_i
       day and self.data['day'] = day.to_i
       
-      self.data['title'] = 'Archive for ';
+      self.data['title'] = 'Archive for '
       if month
         self.data['title'] << Date::MONTHNAMES[month.to_i] << ' '
         if day
@@ -69,24 +69,14 @@ module Jekyll
       collate(site)
 
       self.collated_posts.keys.each do |y|
-        site.pages << ArchiveIndex.new(site, site.source, y.to_s, 'archive_yearly')
-        # write_archive_index(site, y.to_s, 'archive_yearly')
+        site.pages << ArchiveIndex.new(site, site.source, '/' + y.to_s, 'archive_yearly')
         self.collated_posts[ y ].keys.each do |m|
-          site.pages << ArchiveIndex.new(site, site.source, "%04d/%02d" % [ y.to_s, m.to_s ], 'archive_monthly')
-          # write_archive_index(site, "%04d/%02d" % [ y.to_s, m.to_s ], 'archive_monthly')
+          site.pages << ArchiveIndex.new(site, site.source, "/%04d/%02d" % [ y.to_s, m.to_s ], 'archive_monthly')
           self.collated_posts[ y ][ m ].keys.each do |d|
-            site.pages << ArchiveIndex.new(site, site.source, "%04d/%02d/%02d" % [ y.to_s, m.to_s, d.to_s ], 'archive_daily')
-            # write_archive_index(site, "%04d/%02d/%02d" % [ y.to_s, m.to_s, d.to_s ], 'archive_daily')
+            site.pages << ArchiveIndex.new(site, site.source, "/%04d/%02d/%02d" % [ y.to_s, m.to_s, d.to_s ], 'archive_daily')
           end if site.layouts.key? 'archive_daily'
         end if site.layouts.key? 'archive_monthly'
       end if site.layouts.key? 'archive_yearly'
-    end
-
-    def write_archive_index(site, dir, type)
-      archive = ArchiveIndex.new(site, site.source, dir, type)
-      archive.render(site.layouts, site.site_payload)
-      archive.write(site.dest)
-      site.static_files << archive
     end
 
     def collate(site)
