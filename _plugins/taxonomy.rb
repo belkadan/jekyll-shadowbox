@@ -47,30 +47,34 @@ module Taxonomy
     safe true
     
     def generate(site)
-      if site.layouts.key? 'tag_index'
-        dir = site.config['tag_dir'] || '/tags'
-        site.tags.each do |tag, posts|
-          site.pages << Index.new(site, dir, tag, posts, 'tag_index')
-          site.pages << Atom.new(site, dir, tag, posts) if site.config['permid']
+      unless site.tags.empty?
+        if site.layouts.key? 'tag_index'
+          dir = site.config['tag_dir'] || '/tags'
+          site.tags.each do |tag, posts|
+            site.pages << Index.new(site, dir, tag, posts, 'tag_index')
+            site.pages << Atom.new(site, dir, tag, posts) if site.config['permid']
+          end
+        end
+
+        if site.layouts.key? 'tag_list'
+          dir = site.config['tag_dir'] || '/tags'
+          site.pages << List.new(site, dir, site.tags.keys.sort, 'tag_list')
         end
       end
 
-      if site.layouts.key? 'tag_list'
-        dir = site.config['tag_dir'] || '/tags'
-        site.pages << List.new(site, dir, site.tags.keys.sort, 'tag_list')
-      end
-
-      if site.layouts.key? 'category_index'
-        dir = site.config['category_dir'] || '/categories'
-        site.categories.each do |category, posts|
-          site.pages << Index.new(site, dir, category, posts, 'category_index') 
-          site.pages << Atom.new(site, dir, category, posts) if site.config['permid']
+      unless site.categories.empty?
+        if site.layouts.key? 'category_index'
+          dir = site.config['category_dir'] || '/categories'
+          site.categories.each do |category, posts|
+            site.pages << Index.new(site, dir, category, posts, 'category_index') 
+            site.pages << Atom.new(site, dir, category, posts) if site.config['permid']
+          end
         end
-      end
 
-      if site.layouts.key? 'category_list'
-        dir = site.config['category_dir'] || '/categories'
-        site.pages << List.new(site, dir, site.categories.keys.sort, 'category_list')
+        if site.layouts.key? 'category_list'
+          dir = site.config['category_dir'] || '/categories'
+          site.pages << List.new(site, dir, site.categories.keys.sort, 'category_list')
+        end
       end
     end
   end
