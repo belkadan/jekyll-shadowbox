@@ -92,7 +92,7 @@ module Jekyll
   end
   
   class Site
-    alias_method :old_site_payload, :site_payload
+    alias_method :shadowbox_archive_site_payload, :site_payload
     
     def site_payload
       current_year = Time.new.year
@@ -123,7 +123,7 @@ module Jekyll
         'current-year' => current_year,
       }
       
-      payload = old_site_payload
+      payload = shadowbox_archive_site_payload
       payload['site'].merge! added
       payload
     end
