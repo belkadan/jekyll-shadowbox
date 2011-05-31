@@ -14,6 +14,7 @@ This is a theme for the [Jekyll][] site generator which supports the following c
 - Post directories. Instead of naming your post `YYYY-MM-DD-Title.md`, you can make a directory named `YYYY-MM-DD-Title/` and anything inside it will be copied to the proper place. (You probably want to put an `index.markdown` or `index.textile` inside that folder.)
 
 	You may want to install the [ptools][] gem so that Shadowbox can guess if a file is binary and shouldn't be processed by Liquid.
+- An "everything" archive page with live (client-side) search on the content. (This probably won't scale but that's not my problem right now. \*grin\*)
 
 It is designed so that new users should have to edit as few files as possible:
 
@@ -28,7 +29,7 @@ It is designed so that new users should have to edit as few files as possible:
 To see Shadowbox in action, check out <http://belkadan.com/blog>.
 
 Shadowbox was (very) loosely based on the Kubrick theme for WordPress.
-A couple of the plugins were created by Jose Diaz-Gonzalez, then modified for this site.
+A couple of the plugins were created by [Jose Diaz-Gonzalez][jdg], then modified for this site. The client-side search was created by [Elijah Miller][em].
 
 Created by Jordy Rose  
 <http://belkadan.com>  
@@ -39,11 +40,14 @@ Created by Jordy Rose
   [nokogiri]: http://nokogiri.org
   [htmlentities]: http://htmlentities.rubyforge.org
   [ptools]: http://rubygems.org/gems/ptools
+  [jdg]: https://github.com/josegonzalez/josediazgonzalez.com/tree/master/_plugins
+  [em]: https://github.com/jqr/jqr.github.com
 
 ---
 
-License (for what I hold copyright to)
+License
 -------
+(for what I hold copyright to)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

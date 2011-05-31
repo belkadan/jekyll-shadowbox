@@ -32,6 +32,10 @@ module ExtendedFilters
   def taxonomy_name(input)
     input.to_s.taxonomy_name
   end
+  
+  def js_escape(input)
+    input.gsub(/[^\w \`\/\[\]\(\)\*\^\%\$\#\@\!\~\{\}\?\|\:\;\,\.\-\_\+]/mu) {|s| '\u%04x' % s.unpack('U').first }
+  end
 
 end
 
