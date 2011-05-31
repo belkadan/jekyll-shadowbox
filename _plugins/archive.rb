@@ -95,7 +95,7 @@ module Jekyll
     alias_method :shadowbox_archive_site_payload, :site_payload
     
     def site_payload
-      current_year = Time.new.year
+      current_year = self.time.year
       
       months = []
       years = []
