@@ -1,6 +1,8 @@
 # Based on the tag and category plugins by Jose Diaz-Gonzalez
 # https://github.com/josegonzalez/josediazgonzalez.com/tree/master/_plugins
 
+# FIXME: there should be a warning if two tags/categories have the same xml_id.
+
 module Taxonomy
 
   class Index < Jekyll::Page
@@ -80,3 +82,15 @@ module Taxonomy
   end
 
 end
+
+module Jekyll
+  class Post
+    alias_method :shadowbox_taxonomy_initialize, :initialize
+    def initialize(site, source, dir, name)
+      shadowbox_taxonomy_initialize(site, source, dir, name)
+      self.categories.collect! {|x| x.downcase }
+      self.tags.collect! {|x| x.downcase }
+    end
+  end
+end
+
