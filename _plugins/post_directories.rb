@@ -54,7 +54,7 @@ module Jekyll
     alias_method :shadowbox_dirposts_process, :process
     def process(name)
       shadowbox_dirposts_process(name)
-      if 
+      if File.basename(self.slug) == 'index'
         self.slug = File.dirname(self.slug)
       end
     end
