@@ -242,6 +242,10 @@ ol.dates li {
 	text-indent: -1.5rem;
 }
 
+ol.dates .date {
+	font-weight: bold;
+}
+
 ul.meta {
 	list-style-type: none;
 	margin: 0.5em 0;

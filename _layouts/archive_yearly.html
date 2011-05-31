@@ -13,7 +13,7 @@ body: page
 				{% if page.collated_posts[page.year][m][d] %}
 					{% for p in page.collated_posts[page.year][m][d] reversed %}
 						<li>
-							<strong>{{ p.date | date: "%d" }}</strong>
+							<span class="date">{{ p.date | date: "%d" }}</span>
 							<a href="{{ site.base-url }}{{ p.url }}">{{ p.title }}</a>
 						</li>
 					{% endfor %}

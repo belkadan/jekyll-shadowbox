@@ -52,7 +52,7 @@ atom: true
 		<ol class="dates">
 		{% for post in posts limit: short_count offset: full_count %}
 			<li>
-				<strong>{{ post.date | date: "%Y-%m-%d" }}</strong>
+				<span class="date">{{ post.date | date: "%Y-%m-%d" }}</span>
 				<a href="{{ site.base-url }}{{ post.url }}">{{ post.title }}</a>
 			</li>
 			{% if short_count > forloop.length %}

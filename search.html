@@ -68,7 +68,7 @@ title: Archives
 
 			document.getElementById('search_results').innerHTML = results.map(function(post) { return '\
 				<li>\
-					<strong>' + post.date + '</strong>\
+					<span class="date">' + post.date + '</span>\
 					<a href=".' + post.url + '">' + post.title + '</a>\
 				</li>';
 	    }).join('');
