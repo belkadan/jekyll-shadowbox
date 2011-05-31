@@ -3,20 +3,22 @@ pygments: true
 markdown: kramdown
 permalink: /:categories/:year/:month/:title
 exclude: README.md
-destination: ~/Sites/belkadan/blog
 
-# Required site details
+# Required, always!
 title: -dealloc
-base-url: http://counterpoint.local/~jordy/belkadan/blog
 
-# Required for Atom feeds.
+# Required if your blog isn't at the root of your domain
+baseurl: /blog
+
+# Required for Atom feeds
+# This can be any URI, but tag URIs are easy
 permid: tag:belkadan.com,2007:dealloc
 
 # "Optional" site details
 subtitle: The Belkadan Software Blog
 author: Jordy Rose
-favicon: /~jordy/belkadan/favicon
+#favicon: /favicon
 disqus: dealloc
 
 # For services like Disqus that use a ping for validations
-offline: false
+#offline: true
