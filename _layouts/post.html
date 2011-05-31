@@ -6,10 +6,10 @@ disqus: true
 <div class="navigation">
 	&nbsp;
 	{% if page.previous %}
-	<div class="alignleft">&laquo; <a class="prev" href="{{ site.base-url }}{{ page.previous.url }}">{{ page.previous.title }}</a></div>
+	<div class="alignleft">&laquo; <a class="prev" href="{{ site.baseurl }}{{ page.previous.url }}">{{ page.previous.title }}</a></div>
 	{% endif %}
 	{% if page.next %}
-	<div class="alignright"><a class="next" href="{{ site.base-url }}{{ page.next.url }}">{{ page.next.title }}</a> &raquo;</div>
+	<div class="alignright"><a class="next" href="{{ site.baseurl }}{{ page.next.url }}">{{ page.next.title }}</a> &raquo;</div>
 	{% endif %}
 </div>
 
@@ -20,20 +20,20 @@ disqus: true
 
 		<p class="metadata alt">
 			This entry was posted on
-			<a href="{{ site.base-url }}/{{ page.date | date:"%Y/%m" }}">{{ page.date | date: "%B" }}</a>
+			<a href="{{ site.baseurl }}/{{ page.date | date:"%Y/%m" }}">{{ page.date | date: "%B" }}</a>
 			{{ page.date | date: "%d" }},
 			{% if page.category %}
-			<a href="{{ site.base-url }}/{{ page.date | date:"%Y" }}">{{ page.date | date: "%Y" }}</a>
+			<a href="{{ site.baseurl }}/{{ page.date | date:"%Y" }}">{{ page.date | date: "%Y" }}</a>
 			and is filed under
 			<a href="/categories/{{ page.category | xml_id }}" class="category">{{ page.category | taxonomy_name }}</a>.
 			{% else %}
-			<a href="{{ site.base-url }}/{{ page.date | date:"%Y" }}">{{ page.date | date: "%Y" }}</a>.
+			<a href="{{ site.baseurl }}/{{ page.date | date:"%Y" }}">{{ page.date | date: "%Y" }}</a>.
 			{% endif %}
 			
 			{% if page.tags != empty %}
 				Tags:
 				{% for tag in page.tags %}
-					<a href="{{ site.base-url }}/tags/{{tag | xml_id }}" class="tag">{{ tag | taxonomy_name }}</a>{% if forloop.last == false %}, {% endif %}
+					<a href="{{ site.baseurl }}/tags/{{tag | xml_id }}" class="tag">{{ tag | taxonomy_name }}</a>{% if forloop.last == false %}, {% endif %}
 				{% endfor %}
 			{% endif %}
 		</p>
@@ -44,7 +44,7 @@ disqus: true
 		<h3>Possibly Related Posts</h3>
 		<ul class="meta">
 			{% for post in site.related_posts limit:5 %}
-				<li><a href="{{ site.base-url }}{{ post.url }}">{{ post.title }}</a></li>
+				<li><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
 			{% endfor %}
 		</ul>
 	</div>

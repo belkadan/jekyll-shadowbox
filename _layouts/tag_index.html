@@ -7,7 +7,7 @@ layout: list
 	<ul class="meta">
 	{% for tag in page.related %}
 		{% if tag != page.name %}
-			<li><a href="{{ site.base-url }}/tags/{{tag | xml_id }}" class="tag">{{ tag | taxonomy_name }}</a></li>
+			<li><a href="{{ site.baseurl }}/tags/{{tag | xml_id }}" class="tag">{{ tag | taxonomy_name }}</a></li>
 		{% endif %}
 	{% endfor %}
 	</ul>

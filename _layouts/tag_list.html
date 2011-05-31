@@ -9,13 +9,13 @@ title: Tags
 	<ul class="meta">
 	{% for tag in site.iterable.tags %}
 		<li>
-			<a href="{{ site.base-url }}/tags/{{ tag.name | xml_id }}" class="tag">{{ tag.name | taxonomy_name }}</a>
+			<a href="{{ site.baseurl }}/tags/{{ tag.name | xml_id }}" class="tag">{{ tag.name | taxonomy_name }}</a>
 			<span class="metadata">({{ tag.posts.size }})</span>
 		</li>
 	{% endfor %}
 	</ul>
 	
 	{% if site.iterable.categories.size > 0 %}
-		<p>See also <a href="{{ site.base-url }}/categories">the list of all categories</a>.</p>
+		<p>See also <a href="{{ site.baseurl }}/categories">the list of all categories</a>.</p>
 	{% endif %}
 </div>

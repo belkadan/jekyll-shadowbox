@@ -15,11 +15,11 @@
 		<link rel="shortcut icon" href="{{ site.favicon }}" />
 	{% endif %}
 
-	<link rel="stylesheet" href="{{ site.base-url }}/css/style.css" media="screen" type="text/css"/>
-	<link rel="stylesheet" href="{{ site.base-url }}/css/syntax.css" type="text/css"/>
+	<link rel="stylesheet" href="{{ site.baseurl }}/css/style.css" media="screen" type="text/css"/>
+	<link rel="stylesheet" href="{{ site.baseurl }}/css/syntax.css" type="text/css"/>
 
 	{% if page.atom and site.permid %}
-		<link rel="alternate" type="application/atom+xml" title="Atom" href="{{ site.base-url}}{{ page.url | replace: 'index.html', 'atom' }}" />
+		<link rel="alternate" type="application/atom+xml" title="Atom" href="{{ site.baseurl}}{{ page.url | replace: 'index.html', 'atom' }}" />
 	{% endif %}
 </head>
 <body class="{{ page.body }}">
