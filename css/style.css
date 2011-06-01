@@ -252,6 +252,11 @@ ul.meta li:before {
 /* End Lists */
 
 /* Begin Footnotes */
+sup {
+	font-size:0.7em;
+	vertical-align: super;
+}
+
 div.footnotes {
 	font-size: smaller;
 	border-left: 1px solid #ccc;
