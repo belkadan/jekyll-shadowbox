@@ -7,8 +7,8 @@ exclude: README.md
 # Required, always!
 title: -dealloc
 
-# Required if your blog isn't at the root of your domain
-baseurl: /blog
+# Required. Must include the domain if using Disqus.
+baseurl: http://belkadan.com/blog
 
 # Required for Atom feeds
 # This can be any URI, but tag URIs are easy

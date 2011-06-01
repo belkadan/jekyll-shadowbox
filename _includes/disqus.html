@@ -2,7 +2,7 @@
 	if (document.getElementById('disqus_thread')) {
 		var disqus_shortname = '{{ site.disqus }}';
 		var disqus_identifier = '{{ page.url }}';
-		var disqus_url = '{{ site.base_url }}{{ page.url }}';
+		var disqus_url = '{{ site.baseurl }}{{ page.url }}';
 		var disqus_title = '{{ page.title }}';
 		{% if site.offline %}
 		var disqus_developer = 1;
