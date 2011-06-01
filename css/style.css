@@ -197,31 +197,19 @@ img.alignleft {
 
 
 
-/* Begin Lists
-
-	Special stylized non-IE bullets
-	Do not work in Internet Explorer, which merely default to normal bullets. */
-
-html>body .entry ul {
-	margin-left: 0px;
-	padding: 0 0 0 30px;
-	padding-left: 10px;
-	text-indent: -10px;
-}
-
-html>body .entry li {
-	margin: 7px 0 8px 10px;
-	list-style-type:none;
-}
+/* Begin Lists */
 
 .shadow-box ol {
 	padding: 0 0 0 1.5rem;
 	margin: 0;
 }
 
-.shadow-box ol li {
-	margin: 0;
-	padding: 0;
+.entry ul {
+	padding-left: 2.5em;
+}
+
+.entry ol li {
+	margin-left: 1em;
 }
 
 .metadata ul, .metadata li {
@@ -252,14 +240,31 @@ ul.meta {
 	padding: 0 0.4em;
 }
 
-ul.meta li { margin-bottom: 0.2em }
+ul.meta li {
+	margin-bottom: 0.2em
+}
 
-ul.meta li:before, .entry li:before {
+ul.meta li:before {
 	content: "\00BB \0020";
 	padding-left: 1em;
 	text-indent: -1em;
 }
 /* End Lists */
+
+/* Begin Footnotes */
+div.footnotes {
+	font-size: smaller;
+	border-left: 1px solid #ccc;
+}
+
+div.footnotes ol {
+	padding-left: 1.5em;
+}
+
+a[rev=footnote]:before {
+	content: "\0020";
+}
+/* End Footnotes */
 
 /* Begin Sidebar */
 #sidebar {
