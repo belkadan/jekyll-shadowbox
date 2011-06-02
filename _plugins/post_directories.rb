@@ -64,9 +64,7 @@ module Jekyll
     alias_method :shadowbox_dirposts_read_posts, :read_posts
     def read_posts(dir)
       shadowbox_dirposts_read_posts(dir)
-      compound_posts, self.posts = self.posts.partition do |p|
-        p.shadowbox_compound_post?
-      end
+      compound_posts, self.posts = self.posts.partition(&:shadowbox_compound_post?)
       
       compound_posts.each do |p|
         if p.shadowbox_binary?

@@ -88,8 +88,8 @@ module Jekyll
     alias_method :shadowbox_taxonomy_initialize, :initialize
     def initialize(site, source, dir, name)
       shadowbox_taxonomy_initialize(site, source, dir, name)
-      self.categories.collect! {|x| x.downcase }
-      self.tags.collect! {|x| x.downcase }
+      self.categories.collect!(&:downcase)
+      self.tags.collect!(&:downcase)
     end
   end
 end
