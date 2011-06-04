@@ -45,11 +45,18 @@ layout: base
 				</li>
 				{% endfor %}
 				{% for tag in site.iterable.tags %}
-				<li>
-					<a href="{{ site.baseurl }}/tags/{{ tag.name | xml_id }}" class="tag">{{ tag.name | taxonomy_name }}</a>
-					<span class="metadata">({{ tag.posts.size }})</span>
-				</li>
+					{% if tag.posts.size > 1 %}
+						<li>
+							<a href="{{ site.baseurl }}/tags/{{ tag.name | xml_id }}" class="tag">{{ tag.name | taxonomy_name }}</a>
+							<span class="metadata">({{ tag.posts.size }})</span>
+						</li>
+					{% endif %}
 				{% endfor %}
+				{% if site.iterable.tags.size > 0 %}
+				<li>
+					<a href="{{ site.baseurl }}/tags">(see all tags)</a>
+				</li>
+				{% endif %}
 			</ul>
 		</li>
 	</ul>
