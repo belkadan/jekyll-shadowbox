@@ -3,7 +3,7 @@
 		var disqus_shortname = '{{ site.disqus }}';
 		var disqus_identifier = '{{ page.url }}';
 		var disqus_url = '{{ site.baseurl }}{{ page.url }}';
-		var disqus_title = '{{ page.title }}';
+		var disqus_title = '{{ page.title | js_escape }}';
 		{% if site.offline %}
 		var disqus_developer = 1;
 		{% endif %}
