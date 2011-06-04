@@ -55,7 +55,7 @@
 	<updated>{{ newest | date_to_xmlschema }}</updated>
 	
 	{% if page.title %}
-		<title type="text">{{ page.title | xml_escape }} || {{ site.title | xml_escape }}</title>
+		<title type="text">{{ page.title | xml_escape }} // {{ site.title | xml_escape }}</title>
 	{% else %}
 		<title type="text">{{ site.title | xml_escape }}</title>
 		{% if site.subtitle %}
