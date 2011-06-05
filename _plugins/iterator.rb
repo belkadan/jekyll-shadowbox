@@ -33,11 +33,13 @@ module Jekyll
 
     alias_method :shadowbox_iterator_site_payload, :site_payload
     def site_payload
-      payload = shadowbox_iterator_site_payload
-      payload['site']['iterable'] = {
+      @shadowbox_iterator_cache = {
         'categories'  => make_iterable(self.categories, :index => 'name', :items => 'posts'),
         'tags'        => make_iterable(self.tags, :index => 'name', :items => 'posts')
-      }
+      } if not @shadowbox_iterator_cache
+      
+      payload = shadowbox_iterator_site_payload
+      payload['site']['iterable'] = @shadowbox_iterator_cache
       payload
     end
 
