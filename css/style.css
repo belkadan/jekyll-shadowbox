@@ -31,6 +31,9 @@ acronym, abbr, span.caps
 
 code {
 	font-family: 'Menlo', 'Consolas', 'Monaco', 'Courier New', Courier, fixed;
+	hyphens: none;
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
 }
 
 a[href], .post h2 a[href]:hover {
