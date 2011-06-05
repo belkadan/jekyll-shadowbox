@@ -47,8 +47,8 @@ class String
   def taxonomy_name
     # FIXME: needs to be more extensible...
     replacements = {
-      'generictoolbar' => 'GenericToolbar',
       'gdb' => 'GDB',
+      'generictoolbar' => 'GenericToolbar',
       'javascript' => 'JavaScript',
       'os x' => 'OS X',
       'php' => 'PHP',
