@@ -47,10 +47,11 @@ class String
   def taxonomy_name
     # FIXME: needs to be more extensible...
     replacements = {
+      'generictoolbar' => 'GenericToolbar',
+      'gdb' => 'GDB',
+      'javascript' => 'JavaScript',
       'os x' => 'OS X',
       'php' => 'PHP',
-      'generictoolbar' => 'GenericToolbar',
-      'javascript' => 'JavaScript'
     }
     result = capitalize
     replacements.each do |before, after|
