@@ -3,7 +3,9 @@ class BetterHighlightBlock < Jekyll::HighlightBlock
     while !code.index(/\n(?!\t)/)
       code = code.gsub("\n\t", "\n")
     end
-    super(context, code)
+    tab_width = context['tab-width']
+    tab_width = 4 if tab_width.nil?
+    super(context, code.gsub("\t", ' ' * tab_width))
   end
 end
 
