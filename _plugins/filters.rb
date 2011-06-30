@@ -46,20 +46,21 @@ class String
   
   def taxonomy_name
     # FIXME: needs to be more extensible...
-    replacements = {
-      'gdb' => 'GDB',
-      'generictoolbar' => 'GenericToolbar',
-      'javascript' => 'JavaScript',
-      'os x' => 'OS X',
-      'php' => 'PHP',
-    }
+    special_cases = [
+      'GDB',
+      'GenericToolbar',
+      'JavaScript',
+      'OS X',
+      'PHP',
+      'TextMate'
+    ]
     result = capitalize
-    replacements.each do |before, after|
-      result.gsub!(/\b#{before}\b/i, after)
+    special_cases.each do |wd|
+      result.gsub!(/\b#{wd}\b/i, wd)
     end
     
     # Special case for Objective-*
-    result.gsub!(/\bobjective-([a-z]+)\b/i) {|_| "Objective-#{$1.capitalize}" }
+    result.gsub!(/\bobjective-([a-z]+)\b/i) {|_| "Objective-#{$1.taxonomy_name}" }
     result
   end
 end
