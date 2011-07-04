@@ -70,7 +70,7 @@ module Taxonomy
         end
       end
 
-      unless site.categories.empty?
+      unless site.categories.empty? or site.categories.keys == ['']
         if site.layouts.key? 'category_index'
           dir = site.config['category_dir'] || '/categories'
           site.categories.each do |category, posts|
