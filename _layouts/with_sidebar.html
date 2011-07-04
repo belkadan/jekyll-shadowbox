@@ -39,10 +39,12 @@ layout: base
 			<h2>Taxonomy</h2>
 			<ul class="meta">
 				{% for category in site.iterable.categories %}
-				<li>
-					<a href="{{ site.baseurl }}/categories/{{ category.name | xml_id }}" class="category">{{ category.name | taxonomy_name }}</a>
-					<span class="metadata">{{ category.posts.size }}</span>
-				</li>
+					{% unless category.name == '' %}
+						<li>
+							<a href="{{ site.baseurl }}/categories/{{ category.name | xml_id }}" class="category">{{ category.name | taxonomy_name }}</a>
+							<span class="metadata">({{ category.posts.size }})</span>
+						</li>
+					{% endunless %}
 				{% endfor %}
 				{% for tag in site.iterable.tags %}
 					{% if tag.posts.size > 1 %}

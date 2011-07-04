@@ -9,8 +9,14 @@ module Taxonomy
     def initialize(site, dir, groupname, group, layout, name = 'index.html')
       @site = site
       @base = site.source
-      @dir = File.join(dir, groupname.to_xml_id)
       @name = name
+      
+      if groupname == ''
+        groupname = 'Uncategorized'
+        @dir = File.join(dir, '_uncategorized_')
+      else
+        @dir = File.join(dir, groupname.to_xml_id)
+      end
       
       self.process(@name)
       self.data = {

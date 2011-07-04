@@ -7,7 +7,7 @@ layout: with_sidebar
 {% if page.posts %}
 	{% assign posts = page.posts %}
 {% else %}
-	{% assign posts = site.posts %}
+	{% assign posts = site.categories[''] %}
 	{% assign short_count = nil %}
 {% endif %}
 

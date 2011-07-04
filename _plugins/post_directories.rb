@@ -73,6 +73,10 @@ module Jekyll
           pages
         end << p
       end
+      
+      self.categories.each_value do |cat|
+        cat.reject!(&:shadowbox_compound_post?)
+      end
     end
   end
 end
