@@ -8,7 +8,7 @@
 	{% if page.posts %}
 		{% assign posts = page.posts %}
 	{% else %}
-		{% assign posts = site.categories[''] %}
+		{% assign posts = site.news_posts %}
 	{% endif %}
 
 	{% capture content %}
