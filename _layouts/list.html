@@ -22,10 +22,16 @@ layout: with_sidebar
 		<p class="more-link"><a href="{{ site.baseurl }}{{ post.url }}">(Continue reading&#x2026;)</a></p>
 	</div>
 
-	{% if post.category or post.tags != empty %}
+	{% assign has_category = false %}
+	{% unless page.no_categories %}
+		{% if post.categories[0] != '' %}
+			{% assign has_category = true %}
+		{% endif %}
+	{% endunless %}
+	{% if has_category or post.tags != empty %}
 	<p class="metadata">
-		{% if post.category %}
-			Posted in <a href="{{ site.baseurl }}/categories/{{ post.category | xml_id }}" class="category">{{ post.category | taxonomy_name }}
+		{% if has_category %}
+			Posted in <a href="{{ site.baseurl }}/categories/{{ post.categories[0] | xml_id }}" class="category">{{ post.categories[0] | taxonomy_name }}</a>.
 		{% endif %}
 		{% if post.tags != empty %}
 			Tags:

@@ -21,12 +21,12 @@ disqus: true
 			This entry was posted on
 			<a href="{{ site.baseurl }}/{{ page.date | date:"%Y/%m" }}">{{ page.date | date: "%B" }}</a>
 			{{ page.date | date: "%d" }},
-			{% if page.category %}
-			<a href="{{ site.baseurl }}/{{ page.date | date:"%Y" }}">{{ page.date | date: "%Y" }}</a>
-			and is filed under
-			<a href="/categories/{{ page.category | xml_id }}" class="category">{{ page.category | taxonomy_name }}</a>.
+			{% if page.categories[0] != '' %}
+				<a href="{{ site.baseurl }}/{{ page.date | date:"%Y" }}">{{ page.date | date: "%Y" }}</a>
+				and is filed under
+				<a href="/categories/{{ post.categories[0] | xml_id }}" class="category">{{ page.categories[0] | taxonomy_name }}</a>.
 			{% else %}
-			<a href="{{ site.baseurl }}/{{ page.date | date:"%Y" }}">{{ page.date | date: "%Y" }}</a>.
+				<a href="{{ site.baseurl }}/{{ page.date | date:"%Y" }}">{{ page.date | date: "%Y" }}</a>.
 			{% endif %}
 			
 			{% if page.tags != empty %}

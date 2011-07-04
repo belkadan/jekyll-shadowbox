@@ -32,8 +32,8 @@
 			{% endif %}
 		{% endif %}
 
-		{% if post.category and post.category != '' %}
-			<category term="{{ post.category | xml_id }}" scheme="{{ site.baseurl }}/categories" label="{{ post.category | taxonomy_name | xml_escape }}" />
+		{% if post.categories[0] != '' %}
+			<category term="{{ post.categories[0] | xml_id }}" scheme="{{ site.baseurl }}/categories" label="{{ post.categories[0] | taxonomy_name | xml_escape }}" />
 		{% endif %}
 
 		{% for tag in post.tags %}
