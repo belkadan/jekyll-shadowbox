@@ -46,8 +46,13 @@ layout: base
 						</li>
 					{% endunless %}
 				{% endfor %}
+				{% if site.min_tag_size %}
+					{% assign min_tag_size = site.min_tag_size %}
+				{% else %}
+					{% assign min_tag_size = 1 %}
+				{% endif %}
 				{% for tag in site.iterable.tags %}
-					{% if tag.posts.size > 1 %}
+					{% if tag.posts.size >= min_tag_size %}
 						<li>
 							<a href="{{ site.baseurl }}/tags/{{ tag.name | xml_id }}" class="tag">{{ tag.name | taxonomy_name }}</a>
 							<span class="metadata">({{ tag.posts.size }})</span>
