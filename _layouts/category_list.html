@@ -10,7 +10,7 @@ title: Categories
 		{% for category in site.iterable.categories %}
 		<li>
 			{% if category.name == '' %}
-				<a href="{{ site.baseurl }}/_uncategorized_" class="category">Uncategorized</a>
+				<a href="{{ site.baseurl }}/uncategorized" class="category">Uncategorized</a>
 			{% else %}
 				<a href="{{ site.baseurl }}/{{ category.name | xml_id }}" class="category">{{ category.name | taxonomy_name }}</a>
 			{% endif %}

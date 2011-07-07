@@ -11,12 +11,8 @@ module Taxonomy
       @base = site.source
       @name = name
       
-      if groupname == ''
-        groupname = 'Uncategorized'
-        @dir = File.join(dir, '_uncategorized_')
-      else
-        @dir = File.join(dir, groupname.to_xml_id)
-      end
+      groupname = 'Uncategorized' if groupname == ''
+      @dir = File.join(dir, groupname.to_xml_id)
       
       self.process(@name)
       self.data = {
