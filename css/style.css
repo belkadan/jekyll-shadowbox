@@ -51,6 +51,14 @@ a[href] * {
 	cursor:pointer;
 }
 
+.post .note {
+	font-style:italic;
+}
+
+.post .note em {
+	font-style:normal;
+}
+
 /* End Typography & Colors */
 
 /* Begin Structure */
