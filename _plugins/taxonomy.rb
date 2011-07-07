@@ -21,7 +21,7 @@ module Taxonomy
       self.process(@name)
       self.data = {
         'layout' => layout,
-        'posts' => group.reverse,
+        'posts' => group.sort {|a,b| b <=> a},
         'name' => groupname,
         'title' => 'Archive for “' + groupname.taxonomy_name + '”',
         'related' => group.map{|p| p.tags }.reduce(:+).uniq.sort
