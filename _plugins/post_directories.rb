@@ -43,8 +43,18 @@ module Jekyll
     alias_method :shadowbox_dirposts_destination, :destination
     def destination(dest)
       if shadowbox_compound_post?
-        path = File.join(dest, CGI.unescape(self.url))
-        path += output_ext
+        base_url = File.dirname(CGI.unescape(self.url))
+        base_post = self.site.shadowbox_dirposts_rewritten_dirs[base_url]
+        if base_post then
+          dirname = base_post.url
+        else
+          dirname = CGI.unescape(File.dirname(self.slug))
+        end
+
+        basename = CGI.unescape(File.basename(self.slug))
+
+        path = File.join(dest, dirname, basename)
+        path << output_ext
         path
       else
         shadowbox_dirposts_destination(dest)
@@ -56,11 +66,17 @@ module Jekyll
       shadowbox_dirposts_process(name)
       if File.basename(self.slug) == 'index'
         self.slug = File.dirname(self.slug)
+        self.site.shadowbox_dirposts_rewritten_dirs[self.url] = self
       end
     end
   end
   
   class Site
+    def shadowbox_dirposts_rewritten_dirs
+      @shadowbox_dirposts_rewritten_dirs = {} if not @shadowbox_dirposts_rewritten_dirs
+      @shadowbox_dirposts_rewritten_dirs
+    end
+    
     alias_method :shadowbox_dirposts_read_posts, :read_posts
     def read_posts(dir)
       shadowbox_dirposts_read_posts(dir)
