@@ -31,7 +31,7 @@ layout: with_sidebar
 	{% if has_category or post.tags != empty %}
 	<p class="metadata">
 		{% if has_category %}
-			Posted in <a href="{{ site.baseurl }}/categories/{{ post.categories[0] | xml_id }}" class="category">{{ post.categories[0] | taxonomy_name }}</a>.
+			Posted in <a href="{{ site.baseurl }}/{{ post.categories[0] | xml_id }}" class="category">{{ post.categories[0] | taxonomy_name }}</a>.
 		{% endif %}
 		{% if post.tags != empty %}
 			Tags:

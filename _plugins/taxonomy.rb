@@ -72,7 +72,7 @@ module Taxonomy
 
       unless site.categories.empty? or site.categories.keys == ['']
         if site.layouts.key? 'category_index'
-          dir = site.config['category_dir'] || '/categories'
+          dir = '/'
           site.categories.each do |category, posts|
             site.pages << Index.new(site, dir, category, posts, 'category_index') 
             site.pages << Atom.new(site, dir, category, posts) if site.config['permid']
