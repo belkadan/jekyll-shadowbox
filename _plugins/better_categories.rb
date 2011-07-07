@@ -13,14 +13,15 @@ module Jekyll
     def next
       primary_category_name = self.categories[0]
       category = self.site.categories[primary_category_name]
-      category[category.index(self)+1]
+      pos = category.index(self)
+      category[pos+1] if pos # out-of-bounds is okay
     end
 
     def previous
       primary_category_name = self.categories[0]
       category = self.site.categories[primary_category_name]
       pos = category.index(self)
-      category[pos-1] if pos > 0
+      category[pos-1] if pos and pos > 0
     end
   end
 end
