@@ -36,6 +36,14 @@ module ExtendedFilters
   def js_escape(input)
     input.gsub(/[^\w \`\/\[\]\(\)\*\^\%\$\#\@\!\~\{\}\?\|\:\;\,\.\-\_\+]/mu) {|s| '\u%04x' % s.unpack('U').first }
   end
+  
+  def resolve(input, base)
+    if input.start_with? '/' then
+      input
+    else
+      base + '/' + input
+    end
+  end
 
 end
 
