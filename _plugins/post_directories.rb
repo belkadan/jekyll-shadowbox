@@ -4,15 +4,11 @@ module Jekyll
     require 'ptools'
     
     module Convertible
-      def shadowbox_binary?
-        @shadowbox_binary
-      end
-      
       alias_method :shadowbox_dirposts_read_yaml, :read_yaml
       def read_yaml(base, name)
-        if File.binary?(File.join(base, name))
-          self.content = File.read(File.join(base, name))
-          self.output = self.content
+        filename = File.join(base, name)
+        if File.binary?(filename)
+          self.content = File.read(filename)
           self.data = {}
           @shadowbox_binary = true
         else
@@ -22,11 +18,6 @@ module Jekyll
     end
   rescue LoadError
     # No ptools; oh well...we may get some funny Liquid errors.
-    module Convertible
-      def shadowbox_binary?
-        false
-      end
-    end
   end
   
   class Post
@@ -83,11 +74,12 @@ module Jekyll
       compound_posts, self.posts = self.posts.partition(&:shadowbox_compound_post?)
       
       compound_posts.each do |p|
-        if p.shadowbox_binary?
-          static_files
+        if p.data.empty?
+          p.output = p.content
+          static_files << p
         else
-          pages
-        end << p
+          pages << p
+        end
       end
       
       self.categories.each_value do |cat|
