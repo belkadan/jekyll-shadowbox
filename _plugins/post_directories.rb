@@ -10,7 +10,6 @@ module Jekyll
         if File.binary?(filename)
           self.content = File.read(filename)
           self.data = {}
-          @shadowbox_binary = true
         else
           shadowbox_dirposts_read_yaml(base, name)
         end
