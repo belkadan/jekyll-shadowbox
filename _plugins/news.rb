@@ -22,14 +22,8 @@ module Jekyll
   
   if defined? DependencyHandler
     class NewsDependencyHandler < DependencyHandler
-      def handle(name, item, site)
-        return false unless name == 'news'
-        
-        site.shadowbox_news_posts.each do |post|
-          item.add_dependency(post)
-        end
-        
-        true
+      def handle(name, site)
+        Dependency.new(*site.shadowbox_news_posts) if name == 'news'
       end
     end
   end
