@@ -22,6 +22,10 @@ module Taxonomy
         'title' => 'Archive for “' + groupname.taxonomy_name + '”',
         'related' => group.map{|p| p.tags }.reduce(:+).uniq.sort
       }
+      
+      group.each do |post|
+        self.add_dependency(post)
+      end if self.respond_to?(:add_dependency)
     end
   end
 
@@ -63,6 +67,7 @@ module Taxonomy
         if site.layouts.key? 'tag_list'
           dir = site.config['tag_dir'] || '/tags'
           site.pages << List.new(site, dir, site.tags.keys.sort, 'tag_list')
+          site.pages[-1].mark_dirty
         end
       end
 
@@ -78,6 +83,7 @@ module Taxonomy
         if site.layouts.key? 'category_list'
           dir = site.config['category_dir'] || '/categories'
           site.pages << List.new(site, dir, site.categories.keys.sort, 'category_list')
+          site.pages[-1].mark_dirty
         end
       end
     end
