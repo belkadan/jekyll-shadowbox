@@ -31,13 +31,13 @@ module Jekyll
       if day
         self.data['posts'] += collated_posts[year.to_i][month.to_i][day.to_i]
       elsif month
-        collated_posts[year.to_i][month.to_i].sort {|a,b| b <=> a}.each_value do |entry|
-          self.data['posts'] += entry
+        collated_posts[year.to_i][month.to_i].sort {|a,b| b <=> a}.each do |entry|
+          self.data['posts'] += entry[1]
         end
       else
-        collated_posts[year.to_i].sort {|a,b| b <=> a}.each_value do |month|
-          month.sort {|a,b| b <=> a}.each_value do |day|
-            self.data['posts'] += day
+        collated_posts[year.to_i].sort {|a,b| b <=> a}.each do |month|
+          month[1].sort {|a,b| b <=> a}.each do |day|
+            self.data['posts'] += day[1]
           end
         end
       end
@@ -54,11 +54,11 @@ module Jekyll
     def generate(site)
       collated_posts = collate(site)
 
-      collated_posts.keys.each do |y|
+      collated_posts.each do |y, months|
         site.pages << ArchiveIndex.new(site, site.source, '/' + y.to_s, 'archive_yearly', collated_posts)
-        collated_posts[ y ].keys.each do |m|
+        months.each do |m, days|
           site.pages << ArchiveIndex.new(site, site.source, "/%04d/%02d" % [ y.to_s, m.to_s ], 'archive_monthly', collated_posts)
-          collated_posts[ y ][ m ].keys.each do |d|
+          days.each_key do |d|
             site.pages << ArchiveIndex.new(site, site.source, "/%04d/%02d/%02d" % [ y.to_s, m.to_s, d.to_s ], 'archive_daily', collated_posts)
           end if site.layouts.key? 'archive_daily'
         end if site.layouts.key? 'archive_monthly'
@@ -66,7 +66,13 @@ module Jekyll
     end
 
     def collate(site)
-      collated_posts = Hash.new { Hash.new { Hash.new { Array.new }}}
+      collated_posts = Hash.new do |year_hash, year|
+        year_hash[year] = Hash.new do |month_hash, month| 
+          month_hash[month] = Hash.new do |day_hash, day| 
+            day_hash[day] = []
+          end
+        end
+      end
       site.posts.reverse.each do |post|
         y, m, d = post.date.year, post.date.month, post.date.day
         collated_posts[ y ][ m ][ d ] << post unless collated_posts[ y ][ m ][ d ].include?(post)
