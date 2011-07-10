@@ -17,6 +17,8 @@ module Jekyll
       self.data['year'] = year.to_i
       month and self.data['month'] = month.to_i
       day and self.data['day'] = day.to_i
+
+      self.data['collated_posts'] = collated_posts
       
       self.data['title'] = 'Archive for '
       if month
@@ -26,7 +28,7 @@ module Jekyll
         end
       end
       self.data['title'] << year
-      
+
       self.data['posts'] = []
       if day
         self.data['posts'] += collated_posts[year.to_i][month.to_i][day.to_i]
@@ -41,7 +43,7 @@ module Jekyll
           end
         end
       end
-      
+            
       self.data['posts'].each do |post| 
         self.add_dependency(post)
       end if self.respond_to?(:add_dependency)
@@ -57,9 +59,9 @@ module Jekyll
       collated_posts.each do |y, months|
         site.pages << ArchiveIndex.new(site, site.source, '/' + y.to_s, 'archive_yearly', collated_posts)
         months.each do |m, days|
-          site.pages << ArchiveIndex.new(site, site.source, "/%04d/%02d" % [ y.to_s, m.to_s ], 'archive_monthly', collated_posts)
+          site.pages << ArchiveIndex.new(site, site.source, "/%04d/%02d" % [ y, m ], 'archive_monthly', collated_posts)
           days.each_key do |d|
-            site.pages << ArchiveIndex.new(site, site.source, "/%04d/%02d/%02d" % [ y.to_s, m.to_s, d.to_s ], 'archive_daily', collated_posts)
+            site.pages << ArchiveIndex.new(site, site.source, "/%04d/%02d/%02d" % [ y, m, d ], 'archive_daily', collated_posts)
           end if site.layouts.key? 'archive_daily'
         end if site.layouts.key? 'archive_monthly'
       end if site.layouts.key? 'archive_yearly'
