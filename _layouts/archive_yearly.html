@@ -5,11 +5,11 @@ layout: with_sidebar
 	<h2>{{ page.year }}</h2>
 
 	{% for m in (1..12) reversed %}
-		{% if page.collated_posts[page.year][m] %}
+		{% if page.collated_posts[page.year][m] != empty %}
 			<h3>{{ m | month_to_name }}</h3>
 			<ol class="dates">
 			{% for d in (1..31) reversed %}
-				{% if page.collated_posts[page.year][m][d] %}
+				{% if page.collated_posts[page.year][m][d] != empty %}
 					{% for p in page.collated_posts[page.year][m][d] reversed %}
 						<li>
 							<span class="date">{{ p.date | date: "%d" }}</span>
