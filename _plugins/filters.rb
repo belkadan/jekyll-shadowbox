@@ -1,5 +1,6 @@
 $: << File.dirname(__FILE__)
 require 'truncate'
+require 'uri'
 
 module ExtendedFilters
 
@@ -45,6 +46,9 @@ module ExtendedFilters
     end
   end
 
+  def no_domain(input)
+    URI::parse(input).path
+  end
 end
 
 class String
