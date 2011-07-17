@@ -53,7 +53,7 @@ end
 
 class String
   @@shadowbox_taxonomy_special_cases = nil
-  
+
   def to_xml_id
     downcase.gsub('c++', 'cxx').gsub(/[\/\s]/, '-').gsub(/[^-\w]/, '')
   end
@@ -65,7 +65,7 @@ class String
         File.open(File.join(File.dirname(__FILE__), 'special-cases.txt')) do |f|
           f.each_line do |line|
             next if line.start_with?('#')
-            
+
             fields = line.chomp.split("\t")
             case fields.length
             when 0
