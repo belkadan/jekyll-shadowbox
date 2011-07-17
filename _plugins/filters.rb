@@ -52,23 +52,44 @@ module ExtendedFilters
 end
 
 class String
+  @@shadowbox_taxonomy_special_cases = nil
+  
   def to_xml_id
     downcase.gsub('c++', 'cxx').gsub(/[\/\s]/, '-').gsub(/[^-\w]/, '')
   end
   
   def taxonomy_name
-    # FIXME: needs to be more extensible...
-    special_cases = [
-      'GDB',
-      'GenericToolbar',
-      'JavaScript',
-      'OS X',
-      'PHP',
-      'TextMate'
-    ]
+    if @@shadowbox_taxonomy_special_cases.nil?
+      special_cases = {}
+      begin
+        File.open(File.join(File.dirname(__FILE__), 'special-cases.txt')) do |f|
+          f.each_line do |line|
+            next if line.start_with?('#')
+            
+            fields = line.chomp.split("\t")
+            case fields.length
+            when 0
+              # do nothing
+            when 1
+              puts "Duplicate case entry for #{fields[0]}" if special_cases[fields[0]]
+              special_cases[fields[0]] = fields[0]
+            when 2
+              puts "Duplicate case entry for #{fields[0]}" if special_cases[fields[0]]
+              special_cases[fields[0]] = fields[1]
+            else
+              puts "Invalid case entry: '#{line}'"
+            end
+          end
+        end
+      rescue Errno::ENOENT
+        # if the file doesn't exist, ignore it
+      end
+      @@shadowbox_taxonomy_special_cases = special_cases
+    end
+
     result = capitalize
-    special_cases.each do |wd|
-      result.gsub!(/\b#{wd}\b/i, wd)
+    @@shadowbox_taxonomy_special_cases.each do |k, v|
+      result.gsub!(/\b#{k}\b/i, v)
     end
     
     # Special case for Objective-*

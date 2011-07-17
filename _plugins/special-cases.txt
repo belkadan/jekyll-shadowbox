@@ -1,0 +1,14 @@
+# This file allows you to have control over how tag and category names are
+# rendered, using 'case entries'. There are two kinds of case entry:
+# 1. A simple entry shows the proper casing for a word or phrase.
+# 2. A complex entry provides a substitution, in the form old<TAB>new.
+# Each line is a different entry. Both kinds of entry can have spaces.
+
+# Blank lines and lines beginning with '#' are ignored.
+
+GDB
+GenericToolbar
+JavaScript
+OS X
+PHP
+TextMate
