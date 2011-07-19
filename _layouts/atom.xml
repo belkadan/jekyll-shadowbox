@@ -29,6 +29,8 @@
 			{% if post.updated > newest %}
 			{% assign newest = post.updated %}
 			{% endif %}
+		{% else %}
+			<updated>{{ post.date | date_to_xmlschema }}</updated>
 		{% endif %}
 
 		{% if post.categories[0] != '' %}
