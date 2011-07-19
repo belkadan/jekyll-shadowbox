@@ -2,8 +2,7 @@
 # Force processing
 # The entries are first to get the proper value for the <updated> tag.
 ---
-{% if site.permid %}
-<?xml version="1.0"?>
+{% if site.permid %}<?xml version="1.0"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 	{% if page.posts %}
 		{% assign posts = page.posts %}
