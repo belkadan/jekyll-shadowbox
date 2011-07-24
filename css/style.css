@@ -268,9 +268,25 @@ sup {
 	vertical-align: super;
 }
 
+.post a[rel=footnote] {
+	display: none;
+}
+
+body.single .post a[rel=footnote] {
+	display: inline;
+}
+
 div.footnotes {
 	font-size: smaller;
 	border-left: 1px solid #ccc;
+}
+
+.post div.footnotes {
+	display: none;
+}
+
+body.single .post div.footnotes {
+	display: block;
 }
 
 div.footnotes ol {
