@@ -9,6 +9,7 @@
 GDB
 GenericToolbar
 JavaScript
+LLVM
 OS X
 PHP
 TextMate
