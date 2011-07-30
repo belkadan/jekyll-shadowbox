@@ -1,11 +1,19 @@
 class BetterHighlightBlock < Jekyll::HighlightBlock
   def render_pygments(context, code)
+    # Remove leading tabs
     while !code.index(/\n(?!\t)/)
       code = code.gsub("\n\t", "\n")
     end
-    tab_width = context['tab-width']
-    tab_width = 4 if tab_width.nil?
-    super(context, code.gsub("\t", ' ' * tab_width))
+
+    # Convert remaining tabs to spaces
+    tab_width = context['tab-width'] || 4
+    code = code.gsub("\t", ' ' * tab_width)
+
+    # Actually render the thing
+    result = super(context, code)
+
+    # Fix a bug for when embedded in blockquotes.
+    result.gsub("</pre>\n</div>\n", '</pre></div> ')
   end
 end
 
