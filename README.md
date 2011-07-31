@@ -5,6 +5,7 @@ This is a theme for the [Jekyll][] site generator which supports the following c
 
 - Tags (via "tags" metadata in a post)
 - Categories (using subdirectories, untested with "categories" metadata)
+- Intelligent capitalization for tags/categories (to enforce consistency). Put exceptions in `_plugins/special-cases.txt`.
 - Atom feeds
 - Monthly and yearly archive pages
 - [Disqus][] comments
@@ -13,6 +14,8 @@ This is a theme for the [Jekyll][] site generator which supports the following c
 - Hiding things from the front page and main newsfeed (using `no_news: true`)
 - `include`-ing files to be processed by a converter
 - `highlight`-ing Markdown code blocks (i.e. you can indent Liquid-highlighted code, so it looks better in a Markdown or Textile context)
+- Supports my [dependency-aware Jekyll fork][dependencies].
+- Includes support for SSI using `uses_ssi: true`.
 - Post directories. Instead of naming your post `YYYY-MM-DD-Title.md`, you can make a directory named `YYYY-MM-DD-Title/` and anything inside it will be copied to the proper place. (You probably want to put an `index.markdown` or `index.textile` inside that folder.)
 
 	You may want to install the [ptools][] gem so that Shadowbox can guess if a file is binary and shouldn't be processed by Liquid.
@@ -42,6 +45,7 @@ Created by Jordy Rose
   [disqus]: http://disqus.com
   [nokogiri]: http://nokogiri.org
   [htmlentities]: http://htmlentities.rubyforge.org
+  [dependencies]: https://github.com/belkadan/jekyll
   [ptools]: http://rubygems.org/gems/ptools
   [jdg]: https://github.com/josegonzalez/josediazgonzalez.com/tree/master/_plugins
   [em]: https://github.com/jqr/jqr.github.com
