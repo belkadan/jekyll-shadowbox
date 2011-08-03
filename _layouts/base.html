@@ -5,6 +5,14 @@
 	<title>
 		{% if page.full-title %}
 			{{ page.full-title }}
+		{% elsif page.body == 'home' %}
+			{% if site.home_title %}
+				{{ site.home_title }}
+			{% elsif site.subtitle %}
+				{{ site.title }}: {{ site.subtitle }}
+			{% else %}
+				{{ site.title }}
+			{% endif %}
 		{% else %}
 			{{ page.title }} // {{ site.title }}
 		{% endif %}

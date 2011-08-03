@@ -17,6 +17,7 @@ permid: tag:belkadan.com,2007:dealloc
 # "Optional" site details
 subtitle: The Belkadan Software Blog
 author: Jordy Rose
+home_title: -dealloc // The Belkadan Software Blog
 min_tag_size: 2
 disqus: dealloc
 

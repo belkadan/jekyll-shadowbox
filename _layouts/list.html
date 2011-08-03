@@ -48,11 +48,7 @@ layout: with_sidebar
 {% if content_size != '0' or posts.size > full_count %}
 <div class="shadow-box">
 	{% if posts.size > full_count %}
-		{% if page.more %}
-		<h2>{{ page.more }}</h2>
-		{% else %}
 		<h2>Older Posts</h2>
-		{% endif %}
 
 		<ol class="dates">
 		{% for post in posts limit: short_count offset: full_count %}

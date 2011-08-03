@@ -29,7 +29,6 @@ It is designed so that new users should have to edit as few files as possible:
 - `_includes/footer.md`
 - `images/blog-banner.png` (width: 246px)
 - `images/logo.png` (48x48px)
-- `index.html`
 
 To see Shadowbox in action, check out <http://belkadan.com/blog>.
 
