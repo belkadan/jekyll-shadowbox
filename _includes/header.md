@@ -16,8 +16,14 @@
 		{{ page.name | taxonomy_name }}
 	</a>
 {% else %}
-	<a href="http://belkadan.com">
-		Belkadan Software
-	</a>
+	{% if site.header_url %}
+		<a href="{{ site.header_url | resolve: site.baseurl }}">
+			{{ site.header_title }}&nbsp;
+		</a>
+	{% else %}
+		<span>
+			{{ site.header_title }}
+		</span>
+	{% endif %}
 {% endif %}
 </h1>
