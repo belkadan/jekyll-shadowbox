@@ -7,7 +7,17 @@
 </h1>
 
 <h1 id="logo">
+{% if page.categories and page.categories[0] != '' %}
+	<a href="{{ site.baseurl }}/{{ page.categories[0] | xml_id }}">
+		{{ page.categories[0] | taxonomy_name }}
+	</a>
+{% elsif page.name and page.no_categories %}
+	<a href="#">
+		{{ page.name | taxonomy_name }}
+	</a>
+{% else %}
 	<a href="http://belkadan.com">
 		Belkadan Software
 	</a>
+{% endif %}
 </h1>
