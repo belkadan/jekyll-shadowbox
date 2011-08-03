@@ -25,7 +25,6 @@ It is designed so that new users should have to edit as few files as possible:
 
 - `_config.yml`
 - `_includes/head.html`
-- `_includes/header.md`
 - `_includes/blurb.md`
 - `_includes/footer.md`
 - `images/blog-banner.png` (width: 246px)
