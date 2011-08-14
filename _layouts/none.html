@@ -1,4 +1,6 @@
-{% if page.title %}
+{% if page.title == empty %}
+{{ content }}
+{% else %}
 <!DOCTYPE html>
 <html>
 <head>	
@@ -9,6 +11,4 @@
 	{{ content }}
 </body>
 </html>
-{% else %}
-{{ content }}
 {% endif %}
