@@ -93,7 +93,7 @@ module Jekyll
     end
 
     alias_method :shadowbox_archive_site_payload, :site_payload
-    def site_payload      
+    def site_payload
       if not @shadowbox_archive_counts
         current_year = self.time.year
 
@@ -101,7 +101,7 @@ module Jekyll
         years = []
         self.posts.reverse.each do |post|
           y, m, d = post.date.year, post.date.month, post.date.day
-        
+
           if y == current_year
             if months.empty? or months.last['num'] != m
               months.push({ 'num' => m, 'count' => 1})
@@ -123,7 +123,7 @@ module Jekyll
           'current-year' => current_year,
         }
       end
-      
+
       payload = shadowbox_archive_site_payload
       payload['site'].merge!(@shadowbox_archive_counts)
       payload

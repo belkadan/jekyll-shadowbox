@@ -8,7 +8,7 @@ end
 
 class IfIncludeExists < Liquid::Block
   SYNTAX = /[\w\/\.-]+/
-  
+
   def initialize(tag_name, file, tokens)
     if file !~ SYNTAX
       raise SyntaxError.new("Syntax Error in 'if_include_exists' - Valid syntax: if_include_exists file.ext")
@@ -19,7 +19,7 @@ class IfIncludeExists < Liquid::Block
       @file = file.strip
     end
   end
-  
+
   def unknown_tag(tag, markup, tokens)
     if tag == 'else'
       @before_else = @nodelist
@@ -32,7 +32,7 @@ class IfIncludeExists < Liquid::Block
   def block_delimiter
     'end_include_exists'
   end
-  
+
   def render(context)
     context.stack do
       includes_dir = File.join(context.registers[:site].source, '_includes')

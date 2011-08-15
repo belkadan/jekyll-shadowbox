@@ -57,7 +57,7 @@ class String
   def to_xml_id
     downcase.gsub('c++', 'cxx').gsub(/[\/\s]/, '-').gsub(/[^-\w]/, '')
   end
-  
+
   def taxonomy_name
     if @@shadowbox_taxonomy_special_cases.nil?
       special_cases = {}
@@ -91,7 +91,7 @@ class String
     @@shadowbox_taxonomy_special_cases.each do |k, v|
       result.gsub!(/\b#{k}\b/i, v)
     end
-    
+
     # Special case for Objective-*
     result.gsub!(/\bobjective-([a-z]+)\b/i) {|_| "Objective-#{$1.taxonomy_name}" }
     result

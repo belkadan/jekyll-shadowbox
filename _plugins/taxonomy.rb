@@ -10,10 +10,10 @@ module Taxonomy
       @site = site
       @base = site.source
       @name = name
-      
+
       groupname = 'Uncategorized' if groupname == ''
       @dir = File.join(dir, groupname.to_xml_id)
-      
+
       self.process(@name)
       self.data = {
         'layout' => layout,
@@ -23,7 +23,7 @@ module Taxonomy
         'related' => group.map{|p| p.tags }.reduce(:+).uniq.sort,
         'dependencies' => []
       }
-      
+
       group.each do |post|
         self.add_dependency(post)
       end if self.respond_to?(:add_dependency)
@@ -55,7 +55,7 @@ module Taxonomy
 
   class Generator < Jekyll::Generator
     safe true
-    
+
     def generate(site)
       unless site.tags.empty?
         if site.layouts.key? 'tag_index'

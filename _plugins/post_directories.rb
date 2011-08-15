@@ -2,7 +2,7 @@ module Jekyll
   begin
     # If we have ptools, we can skip processing of binary files
     require 'ptools'
-    
+
     module Convertible
       alias_method :shadowbox_dirposts_read_yaml, :read_yaml
       def read_yaml(base, name)
@@ -18,14 +18,14 @@ module Jekyll
   rescue LoadError
     # No ptools; oh well...we may get some funny Liquid errors.
   end
-  
+
   class Post
     alias_method :name, :slug unless method_defined?(:name)
 
     def html?
       output_ext == '.html'
     end unless method_defined?(:html?)
-    
+
     def shadowbox_compound_post?
       File.dirname(self.slug) != '.'
     end
@@ -61,18 +61,18 @@ module Jekyll
       end
     end
   end
-  
+
   class Site
     def shadowbox_dirposts_rewritten_dirs
       @shadowbox_dirposts_rewritten_dirs = {} if not @shadowbox_dirposts_rewritten_dirs
       @shadowbox_dirposts_rewritten_dirs
     end
-    
+
     alias_method :shadowbox_dirposts_read_posts, :read_posts
     def read_posts(dir)
       shadowbox_dirposts_read_posts(dir)
       compound_posts, self.posts = self.posts.partition(&:shadowbox_compound_post?)
-      
+
       compound_posts.each do |p|
         if p.data.empty?
           p.output = p.content
@@ -81,7 +81,7 @@ module Jekyll
           pages << p
         end
       end
-      
+
       self.categories.each_value do |cat|
         cat.reject!(&:shadowbox_compound_post?)
       end
