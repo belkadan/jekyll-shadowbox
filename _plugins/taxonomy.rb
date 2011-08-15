@@ -20,7 +20,8 @@ module Taxonomy
         'posts' => group.sort {|a,b| b <=> a},
         'name' => groupname,
         'title' => 'Archive for “' + groupname.taxonomy_name + '”',
-        'related' => group.map{|p| p.tags }.reduce(:+).uniq.sort
+        'related' => group.map{|p| p.tags }.reduce(:+).uniq.sort,
+        'dependencies' => []
       }
       
       group.each do |post|

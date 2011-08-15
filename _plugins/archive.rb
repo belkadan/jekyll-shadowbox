@@ -43,7 +43,9 @@ module Jekyll
           end
         end
       end
-            
+
+      # Dependency handling.
+      self.data['dependencies'] = []
       self.data['posts'].each do |post| 
         self.add_dependency(post)
       end if self.respond_to?(:add_dependency)
