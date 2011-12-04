@@ -13,7 +13,7 @@ layout: with_sidebar
 
 {% for post in posts limit: full_count %}
 <div class="post shadow-box" id="post{{ post.id | xml_id }}">
-	<h2><a href="{{ site.baseurl }}{{ post.url }}" rel="bookmark" title="Permanent link to &#x201C;{{ post.title }}&#x201D;">{{ post.title }}</a></h2>
+	<h2><a href="{{ site.baseurl }}{{ post.url }}" rel="bookmark" title="Permanent link to &#x201C;{{ post.title | xml_escape }}&#x201D;">{{ post.title }}</a></h2>
 	<p class="metadata">{{ post.date | date_to_long_string }}</p>
 
 	<div class="entry">
