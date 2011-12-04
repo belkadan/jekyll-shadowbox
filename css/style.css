@@ -41,6 +41,8 @@ a[href], .post h2 a[href]:hover {
 	color: #06c;
 }
 
+.post h2 { text-align:left }
+
 .post h2 a[href] { color: #000 }
 
 a[href]:hover {
@@ -129,7 +131,7 @@ body {
 
 .pagetitle {
 	clear: both;
-	text-align: center;
+	text-align: center !important;
 }
 
 .metadata {
