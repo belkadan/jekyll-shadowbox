@@ -175,6 +175,14 @@ p img {
 	max-width: 100%;
 }
 
+video {
+	border: 1px solid #ccc;
+}
+
+video[controls] {
+	border-bottom-style: none;
+}
+
 /* Begin Image Alignment */
 /*	Using 'class="alignright"' on an image will (who would've
 	thought?!) align the image to the right. And using 'class="centered',
