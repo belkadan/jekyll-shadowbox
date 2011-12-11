@@ -37,10 +37,10 @@ module Jekyll
         if base_post then
           dirname = base_post.url
         else
-          dirname = File.dirname(CGI.unescape(self.slug))
+          dirname = File.dirname(CGI.unescape(self.slug.gsub('+','%2B')))
         end
 
-        basename = File.basename(CGI.unescape(self.slug))
+        basename = File.basename(CGI.unescape(self.slug.gsub('+','%2B')))
 
         path = File.join(dest, dirname, basename)
         path << output_ext
