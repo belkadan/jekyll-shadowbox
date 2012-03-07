@@ -30,6 +30,15 @@ module Jekyll
       File.dirname(self.slug) != '.'
     end
 
+    alias_method :shadowbox_dirposts_published, :published
+    def published
+      if shadowbox_compound_post?
+        base_post = self.site.shadowbox_dirposts_rewritten_dirs[@shadowbox_dirposts_id]
+        return base_post.published if base_post
+      end
+      shadowbox_dirposts_published
+    end
+
     alias_method :shadowbox_dirposts_destination, :destination
     def destination(dest)
       if shadowbox_compound_post?
@@ -74,6 +83,9 @@ module Jekyll
       compound_posts, self.posts = self.posts.partition(&:shadowbox_compound_post?)
 
       compound_posts.each do |p|
+        # We need to check for "published" again because compound post files
+        # can be loaded before the base post (index).
+        next unless p.published
         if p.data.empty?
           p.output = p.content
           static_files << p
