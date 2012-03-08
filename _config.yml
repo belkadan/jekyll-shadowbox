@@ -1,7 +1,7 @@
 # Jekyll settings
 pygments: true
 markdown: kramdown
-permalink: /:categories/:year/:month/:title
+permalink: /:categories/:year/:month/:title/
 exclude: README.md
 
 # Required, always!
@@ -30,3 +30,4 @@ header_url: /
 
 # For services like Disqus that use a ping for validations
 #offline: true
+
