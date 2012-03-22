@@ -1,5 +1,7 @@
 class BetterHighlightBlock < Jekyll::HighlightBlock
   def render_pygments(context, code)
+    code = code.join if code.respond_to?(:join)
+
     # Remove leading tabs
     while !code.index(/\n(?!\t)/)
       code = code.gsub("\n\t", "\n")
