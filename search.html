@@ -4,85 +4,68 @@ body: search
 title: Archives
 dependencies: *
 ---
+{% if site.tapir_token %}
 <div class="shadow-box" id="search_results_area">
-  <h2>Posts <span id="result_count"></span></h2>
-	<p class="metadata">You can refine your query using the search field.</p>
-  <ol id="search_results" class="dates">
-  </ol>
+	<h2>Posts <span id="result_count"></span></h2>
+	<ol id="search_results" class="dates">
+	</ol>
 </div>
 
-<script type="text/javascript" src="json_search.0.9.0.js"></script>
 <script type="text/javascript">
-	var posts = [
-	  {% for post in site.posts %}
-	    {
-	      title:   '{{ post.title   | strip_html       | js_escape }}',
-	      content: '{{ post.content | strip_html       | js_escape }}',
-	      url:     '{{ post.url     |                  | js_escape }}',
-				date:    '{{ post.date    | date: "%Y-%m-%d" | js_escape }}'
-	    }{% if forloop.last %}{% else %},{% endif %}
-	  {% endfor %}
-	];
-	
 	window.addEventListener("load", function() {
-	  var search_field = document.getElementById('search');
-		search_field.form.onSubmit = function () { return false; };
+		var tapir = function(query, callback) {
+			if (window.XMLHttpRequest) {
+				req = new XMLHttpRequest()
+			} else {
+				req = new ActiveXObject("Msxml2.XMLHTTP")
+			}
+			if (!req) return;
+
+			req.onreadystatechange = function () {
+				if (req.readystate != 4) return;
+				if (req.status != 200) {
+					// FIXME: error message
+					callback([])
+				} else {
+					callback(JSON.parse(req.responseText))
+				}
+			}
+			req.open('GET', 'http://tapirgo.com/api/1/search.json?token={{ site.tapir_token }}&query=' + encodeURIComponent(query));
+			req.send();
+		}
+
+		var search_results = document.getElementById('search_results')
+		var search_field = document.getElementById('search');
 		var query = window.location.search.match(/query=(.+?)(\x26|$)/)
 		if (query) search_field.value = query[1]
-		
-	  var json_search = new JSONSearch({
-	    fields: {
-	      title: 'infix',
-	      content: 'word_prefix'
-	    },
-	    ranks: {
-	      title: 3,
-	      summary: 2,
-	      content: 1
-	    }
-	  });
 
-	  var search = function(e) {
-			if (e && e.keyCode == 27) {
-	      search_field.value = '';
-				search_field.blur();
-				search();
-	    }
-	
-	    var query = search_field.value;
-	    var results;
-	    if (query == '') {
-	      results = posts;
-	    } else {
-	      results = json_search.getResults(query, posts);
-	    }
+		search_field.form.onSubmit = function() {	
+			var query = search_field.value;
+			if (!query) return;
 
-	    // if (!query.blank()) {
-	    //   document.body.addClassName('searching');
-	    //   search_label.hide();
-	    // } else {
-	    //   document.body.removeClassName('searching');
-	    // }
-			var resultCount = document.getElementById('result_count')
-			if (resultCount.textContent) resultCount.textContent = '(' + results.length + ')';
-			else resultCount.innerText = '(' + results.length + ')';
+			search_results.className = 'searching';
+			tapir(query, function(results) {
+				search_results.className = '';
+				var resultCount = document.getElementById('result_count')
+				if (resultCount.textContent) resultCount.textContent = '(' + results.length + ')';
+				else resultCount.innerText = '(' + results.length + ')';
 
-			document.getElementById('search_results').innerHTML = results.map(function(post) { return '\
-				<li>\
-					<span class="date">' + post.date + '</span>\
-					<a href=".' + post.url + '">' + post.title + '</a>\
-				</li>';
-	    }).join('');
-	  };
+				search_results.innerHTML = results.map(function(post) { return '\
+					<li>\
+						<span class="date">' + post.published_on.substr(0,10) + '</span>\
+						<a href="' + post.link + '">' + post.title + '</a>\
+					</li>';
+				}).join('');
+			});
 
-	  search_field.onkeypress = function (e) {
-			if (e && e.keyCode == 13) {
-				return false;
-			}
+			return false;
 		};
-	  search_field.addEventListener('keyup', search);
-
-	  search();
+		search_field.form.onSubmit();
 	});
 	
 </script>
+{% else %}
+<div class="shadow-box" id="search_results_area">
+	<p>Search is not enabled on this site.
+</div>
+{% endif %}

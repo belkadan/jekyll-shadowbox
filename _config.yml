@@ -2,7 +2,7 @@
 pygments: true
 markdown: kramdown
 permalink: /:categories/:year/:month/:title/
-exclude: README.md tapir.yml
+exclude: [README.md, tapir.yml]
 
 # Required, always!
 title: -dealloc
@@ -20,6 +20,7 @@ author: Jordy Rose
 home_title: -dealloc // The Belkadan Software Blog
 min_tag_size: 2
 disqus: dealloc
+tapir_token: 4f6d17a83f61b03ac3000004
 
 # Optional. Relative to baseurl. Must be on the same site!
 favicon: /favicon

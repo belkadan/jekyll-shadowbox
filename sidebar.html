@@ -8,13 +8,15 @@ dependencies: *
 			{% include blurb.md %}
 		</li>
 		{% end_include_exists %}
-		
+
+		{% if site.tapir_token %}
 		<li>
 			<form id="search_area" action="{{ site.baseurl }}/search" method="get">
 		    <input id="search" type="search" name="query" placeholder="Search archives&#x2026;" />
 		  </form>
 		</li>
-		
+		{% endif %}
+
 		<li>
 			<h2>Archives</h2>
 			<ul class="meta">
