@@ -1,0 +1,15 @@
+---
+dependencies: news
+# This YAML section is NOT part of the file content, it's a header for Jekyll!
+---
+{% for post in site.news_posts %}
+- link: {{ site.baseurl}}{{ post.url }}
+  title: "{{ post.title | cgi_escape }}"
+{% if post.updated %}
+  published_on: {{ post.updated | date_to_xmlschema }}
+{% else %}
+  published_on: {{ post.date | date_to_xmlschema }}
+{% endif %}
+  summary: "{{ post.content | preview | cgi_escape }}"
+  content: "{{ post.content | cgi_escape }}"
+{% endfor %}
