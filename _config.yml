@@ -2,7 +2,7 @@
 pygments: true
 markdown: kramdown
 permalink: /:categories/:year/:month/:title/
-exclude: README.md
+exclude: README.md tapir.yml
 
 # Required, always!
 title: -dealloc
