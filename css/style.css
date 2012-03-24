@@ -370,6 +370,13 @@ blockquote cite {
 a[href] img {
 	border: none;
 }
+
+.loading {
+	background-image:url(../images/loading);
+	background-repeat:no-repeat;
+	background-position:center center;
+	min-height:64px;
+}
 /* End Various Tags & Classes*/
 
 /* Begin Headers */

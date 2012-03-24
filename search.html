@@ -2,7 +2,6 @@
 layout: with_sidebar
 body: search
 title: Archives
-dependencies: *
 ---
 {% if site.tapir_token %}
 <div class="shadow-box" id="search_results_area">
@@ -52,7 +51,7 @@ dependencies: *
 		if (query) search_field.value = query[1]
 
 		var tapir_callback = function(results) {
-			search_results.className = '';
+			search_results.className = 'dates';
 			var resultCount = document.getElementById('result_count')
 			if (resultCount.textContent) resultCount.textContent = '(' + results.length + ')';
 			else resultCount.innerText = '(' + results.length + ')';
@@ -71,7 +70,7 @@ dependencies: *
 			var query = search_field.value;
 			if (!query) return;
 
-			search_results.className = 'searching';
+			search_results.className = 'loading dates';
 			tapir(query, tapir_callback);
 		}
 
@@ -82,6 +81,6 @@ dependencies: *
 </script>
 {% else %}
 <div class="shadow-box" id="search_results_area">
-	<p>Search is not enabled on this site.
+	<p>Search is not enabled on this site.</p>
 </div>
 {% endif %}
