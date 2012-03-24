@@ -14,6 +14,11 @@ dependencies: *
 <script type="text/javascript">
 	window.addEventListener("load", function() {
 		var tapir = function(query, callback) {
+			var url = 'http://tapirgo.com/api/1/search.json?token=4f6c19583f61b02e9500000c&query=' + encodeURIComponent(query);
+			var req;
+
+{% comment %}
+			// Tapir doesn't support CORS yet...
 			if (window.XMLHttpRequest) {
 				req = new XMLHttpRequest()
 			} else {
@@ -24,14 +29,21 @@ dependencies: *
 			req.onreadystatechange = function () {
 				if (req.readystate != 4) return;
 				if (req.status != 200) {
-					// FIXME: error message
 					callback([])
 				} else {
 					callback(JSON.parse(req.responseText))
 				}
 			}
-			req.open('GET', 'http://tapirgo.com/api/1/search.json?token={{ site.tapir_token }}&query=' + encodeURIComponent(query));
+			req.open('GET', url);
 			req.send();
+{% endcomment %}
+
+			// JSONP is not safe, but it's all we've got...
+			window.tapir_callback = callback
+			var script = document.createElement('script')
+			script.setAttribute('type', 'text/javascript')
+			script.setAttribute('src', url + "&callback=tapir_callback")
+			document.head.appendChild(script)
 		}
 
 		var search_results = document.getElementById('search_results')
@@ -39,28 +51,32 @@ dependencies: *
 		var query = window.location.search.match(/query=(.+?)(\x26|$)/)
 		if (query) search_field.value = query[1]
 
-		search_field.form.onSubmit = function() {	
+		var tapir_callback = function(results) {
+			search_results.className = '';
+			var resultCount = document.getElementById('result_count')
+			if (resultCount.textContent) resultCount.textContent = '(' + results.length + ')';
+			else resultCount.innerText = '(' + results.length + ')';
+
+			search_results.innerHTML = results.map(function(post) { return '\
+				<li>\
+					<span class="date">' + post.published_on.substr(0,10) + '</span>\
+					<a href="' + post.link + '">' + post.title + '</a>\
+				</li>';
+			}).join('');
+		}
+
+		var run_query = function(e) {
+			if (e) e.preventDefault();
+
 			var query = search_field.value;
 			if (!query) return;
 
 			search_results.className = 'searching';
-			tapir(query, function(results) {
-				search_results.className = '';
-				var resultCount = document.getElementById('result_count')
-				if (resultCount.textContent) resultCount.textContent = '(' + results.length + ')';
-				else resultCount.innerText = '(' + results.length + ')';
+			tapir(query, tapir_callback);
+		}
 
-				search_results.innerHTML = results.map(function(post) { return '\
-					<li>\
-						<span class="date">' + post.published_on.substr(0,10) + '</span>\
-						<a href="' + post.link + '">' + post.title + '</a>\
-					</li>';
-				}).join('');
-			});
-
-			return false;
-		};
-		search_field.form.onSubmit();
+		search_field.form.addEventListener('submit', run_query);
+		run_query();
 	});
 	
 </script>
