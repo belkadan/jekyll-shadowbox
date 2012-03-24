@@ -1,6 +1,24 @@
 ---
 dependencies: news
-# This YAML section is NOT part of the file content, it's a header for Jekyll!
+# This file is used with the export_to_tapir.rb script, found under _plugins.
+# It is for new users signing up for Tapir who want to use the Tapir's article
+# push feature rather than temporarily generating a full newsfeed and waiting
+# for Tapir's import to complete. To do this:
+#
+# Step 1: Remove tapir.yml from _config.yml's excludes.
+# Step 2: Generate your site. Make sure this is using your live site's baseurl.
+# Step 3: Run the export_to_tapir script as follows:
+#	_plugins/export_to_tapir.rb <your_tapir_secret_key> path/to/generated/tapir.yml
+# Step 4: Wait. There's a delay of 0.2s per post so that Tapir doesn't think we're DoSing them.
+# Step 5: Put tapir.yml back in _config.yml's excludes.
+#
+# You should only have to do this once, since Tapir watches your newsfeed for any new posts.
+#
+# Note that this only causes Tapir to index /news/ posts. If you want /everything/
+# on your site indexed, not only will you have to change the for-loop below, but
+# you'll have to provide another newsfeed that doesn't just show news-posts.
+#
+# BTW, this YAML section is NOT part of the file content, it's a header for Jekyll!
 ---
 {% for post in site.news_posts %}
 ---

@@ -19,7 +19,7 @@ This is a theme for the [Jekyll][] site generator which supports the following c
 - Post directories. Instead of naming your post `YYYY-MM-DD-Title.md`, you can make a directory named `YYYY-MM-DD-Title/` and anything inside it will be copied to the proper place. (You probably want to put an `index.markdown` or `index.textile` inside that folder.)
 
 	You may want to install the [ptools][] gem so that Shadowbox can guess if a file is binary and shouldn't be processed by Liquid.
-- An "everything" archive page with live (client-side) search on the content. (This probably won't scale but that's not my problem right now. \*grin\*)
+- Search, via [Tapir][].
 
 It is designed so that new users should have to edit as few files as possible:
 
@@ -45,6 +45,7 @@ Created by Jordy Rose
   [htmlentities]: http://htmlentities.rubyforge.org
   [dependencies]: https://github.com/belkadan/jekyll
   [ptools]: http://rubygems.org/gems/ptools
+  [Tapir]: http://tapirgo.com
   [jdg]: https://github.com/josegonzalez/josediazgonzalez.com/tree/master/_plugins
   [em]: https://github.com/jqr/jqr.github.com
 
