@@ -189,7 +189,7 @@ video[controls] {
 	will of course center the image. This is much better than using
 	align="center", being much more futureproof (and valid) */
 
-img.centered {
+.centered {
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
@@ -412,3 +412,30 @@ pre {
 	border:1px solid #ddd;
 	padding:0.2rem 0.4rem;
 }
+
+form.centered {
+	text-align:center;
+}
+
+table {
+	border-collapse:collapse;
+}
+
+table.centered {
+	display:table;
+}
+
+td, th {
+	border:#ccc 1px solid;
+	padding:0.5em 1em;
+}
+
+th {
+	text-align:center;
+}
+
+td.list {
+	vertical-align:text-top;
+	padding:0 1.5em 0 0;
+}
+
