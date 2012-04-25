@@ -8,7 +8,7 @@ module Jekyll
       def read_yaml(base, name)
         filename = File.join(base, name)
         if File.binary?(filename)
-          self.content = File.read(filename)
+          self.content = ''
           self.data = {}
         else
           shadowbox_dirposts_read_yaml(base, name)
@@ -82,13 +82,14 @@ module Jekyll
       shadowbox_dirposts_read_posts(dir)
       compound_posts, self.posts = self.posts.partition(&:shadowbox_compound_post?)
 
+      posts_path = File.join(dir, '_posts')
       compound_posts.each do |p|
         # We need to check for "published" again because compound post files
         # can be loaded before the base post (index).
         next unless p.published
         if p.data.empty?
-          p.output = p.content
-          static_files << p
+          # StaticFile never reads the files into memory.
+          static_files << StaticFile.new(self, self.source, posts_path, p.name)
         else
           pages << p
         end
