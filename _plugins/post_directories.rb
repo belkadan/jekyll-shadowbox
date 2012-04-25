@@ -71,6 +71,15 @@ module Jekyll
     end
   end
 
+  class CompoundPostResource < StaticFile
+    def destination(dest)
+      base_post = @site.shadowbox_dirposts_rewritten_dirs[File.dirname(@name)]
+      raise FatalException.new("Cannot have post resources without a primary post: " + @shadowbox_dirposts_id) if base_post.nil?
+
+      File.join(dest, base_post.url, File.basename(@name))
+    end
+  end
+
   class Site
     def shadowbox_dirposts_rewritten_dirs
       @shadowbox_dirposts_rewritten_dirs = {} if not @shadowbox_dirposts_rewritten_dirs
@@ -88,8 +97,8 @@ module Jekyll
         # can be loaded before the base post (index).
         next unless p.published
         if p.data.empty?
-          # StaticFile never reads the files into memory.
-          static_files << StaticFile.new(self, self.source, posts_path, p.name)
+          # Don't read the file into memory.
+          static_files << CompoundPostResource.new(self, self.source, posts_path, p.name)
         else
           pages << p
         end
