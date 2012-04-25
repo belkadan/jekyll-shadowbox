@@ -33,7 +33,7 @@ It is designed so that new users should have to edit as few files as possible:
 To see Shadowbox in action, check out <http://belkadan.com/blog>.
 
 Shadowbox was (very) loosely based on the Kubrick theme for WordPress.
-A couple of the plugins were created by [Jose Diaz-Gonzalez][jdg], then modified for this site. The client-side search was created by [Elijah Miller][em].
+A couple of the plugins were created by [Jose Diaz-Gonzalez][jdg], then modified for this site.
 
 Created by Jordy Rose  
 <http://belkadan.com>  
@@ -47,7 +47,6 @@ Created by Jordy Rose
   [ptools]: http://rubygems.org/gems/ptools
   [Tapir]: http://tapirgo.com
   [jdg]: https://github.com/josegonzalez/josediazgonzalez.com/tree/master/_plugins
-  [em]: https://github.com/jqr/jqr.github.com
 
 ---
 
