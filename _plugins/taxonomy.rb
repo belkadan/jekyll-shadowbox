@@ -1,3 +1,4 @@
+# encoding: utf-8
 # Based on the tag and category plugins by Jose Diaz-Gonzalez
 # https://github.com/josegonzalez/josediazgonzalez.com/tree/master/_plugins
 
