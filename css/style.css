@@ -175,7 +175,7 @@ p img {
 	max-width: 100%;
 }
 
-video {
+video, img.bordered {
 	border: 1px solid #ccc;
 }
 
